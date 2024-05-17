@@ -1,9 +1,11 @@
 package com.example.android11;
 
+import android.animation.ObjectAnimator;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.webkit.WebView;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,19 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            mediaPlayer.setDataSource("https://example.com/music.mp3");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        mediaPlayer.start();
+        Button button = findViewById(R.id.button);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(button, "translationX", 0f, 100f);
+        animator.setDuration(1000);
+        animator.start();
+
 
     }
 }
